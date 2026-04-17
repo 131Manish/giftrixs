@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Browse all personalized gift categories at GiftSite – Wedding, Anniversary, Birthday & more."/>
+  <title>Products – GiftSite 🎁</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/main.css"/>
+  <link rel="stylesheet" href="assets/css/category.css"/>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <h1 class="page-hero__title" id="page-cat-title">All Gifts</h1>
+    <p class="page-hero__sub" id="page-cat-sub">Explore our curated personalized gift collection</p>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <span id="breadcrumb-cat">All Products</span>
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="container">
+    <div class="cat-layout">
+
+      <!-- SIDEBAR FILTERS -->
+      <aside class="cat-sidebar" id="sidebar">
+        <div class="sidebar-section">
+          <h4 class="sidebar-title">Categories</h4>
+          <ul class="sidebar-list" id="sidebar-cats">
+            <li><a href="category.html" class="sidebar-link active">All Gifts <span class="sidebar-count">200+</span></a></li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h4 class="sidebar-title">Price Range</h4>
+          <div class="price-range">
+            <input type="range" min="0" max="3000" value="3000" class="range-slider" id="price-slider" oninput="filterByPrice(this.value)"/>
+            <div class="price-range__labels">
+              <span>₹0</span>
+              <span id="price-max-label">₹3000</span>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <h4 class="sidebar-title">Rating</h4>
+          <div class="rating-filters">
+            <label class="rating-filter"><input type="radio" name="rating" value="0" checked onchange="filterByRating(0)"/> All Ratings</label>
+            <label class="rating-filter"><input type="radio" name="rating" value="4.5" onchange="filterByRating(4.5)"/> 4.5★ & above</label>
+            <label class="rating-filter"><input type="radio" name="rating" value="4" onchange="filterByRating(4)"/> 4.0★ & above</label>
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <h4 class="sidebar-title">Sort By</h4>
+          <select class="sort-select" onchange="sortProducts(this.value)">
+            <option value="default">Default</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+            <option value="discount">Biggest Discount</option>
+          </select>
+        </div>
+      </aside>
+
+      <!-- PRODUCT AREA -->
+      <div class="cat-main">
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="filter-pills" id="filter-pills">
+            <button class="filter-pill active" onclick="quickFilter('all',this)">All</button>
+            <button class="filter-pill" onclick="quickFilter('Wedding',this)">💍 Wedding</button>
+            <button class="filter-pill" onclick="quickFilter('Anniversary',this)">💕 Anniversary</button>
+            <button class="filter-pill" onclick="quickFilter('Birthday',this)">🎂 Birthday</button>
+            <button class="filter-pill" onclick="quickFilter('Lovers',this)">❤️ Lovers</button>
+            <button class="filter-pill" onclick="quickFilter('Family Gifts',this)">👨‍👩‍👧‍👦 Family</button>
+            <button class="filter-pill" onclick="quickFilter('Frame',this)">🖼️ Frames</button>
+            <button class="filter-pill" onclick="quickFilter('Wood Gifts',this)">🌳 Wood</button>
+            <button class="filter-pill" onclick="quickFilter('Lighting Gifts',this)">💡 LED</button>
+            <button class="filter-pill" onclick="quickFilter('Personalized',this)">✍️ Personalized</button>
+          </div>
+          <div class="filter-bar__right">
+            <span class="result-count" id="result-count">20 Products</span>
+            <button class="mobile-filter-btn" onclick="toggleSidebar()">
+              <i class="fas fa-filter"></i> Filters
+            </button>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid-4" id="products-grid" style="min-height:300px"></div>
+
+        <!-- Empty State -->
+        <div class="empty-state d-none" id="empty-state">
+          <div class="empty-state__icon">🔍</div>
+          <h3 class="empty-state__title">No Products Found</h3>
+          <p class="empty-state__text">Try a different category or search term</p>
+          <a href="category.html" class="btn btn-primary">View All Gifts</a>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination"></div>
+
+      </div><!-- /.cat-main -->
+    </div><!-- /.cat-layout -->
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/category.js"></script>
+</body>
+</html>

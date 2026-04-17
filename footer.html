@@ -1,0 +1,134 @@
+<!-- =============================================
+     GIFTSITE — REUSABLE FOOTER COMPONENT
+     ============================================= -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+
+      <!-- Brand -->
+      <div class="footer__brand">
+        <a href="index.html" class="header__logo" style="margin-bottom:0">
+          <div class="header__logo-icon" style="animation:none;width:40px;height:40px;font-size:20px">🎁</div>
+          <span class="header__logo-text">GiftSite</span>
+        </a>
+        <p class="footer__desc">
+          India's most loved personalized gifting platform. We create memories that last a lifetime through beautifully crafted, custom gifts for every special occasion.
+        </p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer__social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer__social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="footer__social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="footer__social-btn" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer__col">
+        <h4>Quick Links</h4>
+        <ul class="footer__links">
+          <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:9px"></i> Home</a></li>
+          <li><a href="category.html"><i class="fas fa-chevron-right" style="font-size:9px"></i> All Categories</a></li>
+          <li><a href="category.html?cat=Birthday"><i class="fas fa-chevron-right" style="font-size:9px"></i> Birthday Gifts</a></li>
+          <li><a href="category.html?cat=Wedding"><i class="fas fa-chevron-right" style="font-size:9px"></i> Wedding Gifts</a></li>
+          <li><a href="category.html?cat=Anniversary"><i class="fas fa-chevron-right" style="font-size:9px"></i> Anniversary</a></li>
+          <li><a href="wishlist.html"><i class="fas fa-chevron-right" style="font-size:9px"></i> My Wishlist</a></li>
+          <li><a href="cart.html"><i class="fas fa-chevron-right" style="font-size:9px"></i> My Cart</a></li>
+        </ul>
+      </div>
+
+      <!-- Policies -->
+      <div class="footer__col">
+        <h4>Policies</h4>
+        <ul class="footer__links">
+          <li><a href="#"><i class="fas fa-chevron-right" style="font-size:9px"></i> Privacy Policy</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right" style="font-size:9px"></i> Return Policy</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right" style="font-size:9px"></i> Shipping Policy</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right" style="font-size:9px"></i> Terms &amp; Conditions</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right" style="font-size:9px"></i> Cancellation Policy</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right" style="font-size:9px"></i> FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer__col">
+        <h4>Contact Us</h4>
+        <ul class="footer__contact">
+          <li>
+            <i class="fas fa-map-marker-alt"></i>
+            <span>123, Gift Lane, Jaipur,<br>Rajasthan – 302001, India</span>
+          </li>
+          <li>
+            <i class="fas fa-phone-alt"></i>
+            <span>+91 98765 43210</span>
+          </li>
+          <li>
+            <i class="fas fa-envelope"></i>
+            <span>hello@giftsite.in</span>
+          </li>
+          <li>
+            <i class="fas fa-clock"></i>
+            <span>Mon–Sat: 9:00 AM – 7:00 PM</span>
+          </li>
+          <li>
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp: +91 98765 43210</span>
+          </li>
+        </ul>
+      </div>
+
+    </div><!-- /.footer__grid -->
+
+    <div class="footer__bottom">
+      <div class="footer__copy">
+        © 2024 GiftSite. Crafted with ❤️ in India. All rights reserved.
+      </div>
+      <div class="footer__payments">
+        <div class="payment-badge">UPI</div>
+        <div class="payment-badge">Visa</div>
+        <div class="payment-badge">Mastercard</div>
+        <div class="payment-badge">Paytm</div>
+        <div class="payment-badge">COD</div>
+        <div class="payment-badge">Razorpay</div>
+      </div>
+    </div>
+
+  </div><!-- /.container -->
+</footer>
+
+<!-- MOBILE BOTTOM NAVIGATION -->
+<nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+  <ul class="mobile-bottom-nav__list">
+    <li>
+      <button class="mobile-bottom-nav__item" onclick="openDrawer()" style="background:none;border:none">
+        <i class="fas fa-bars"></i><span>Menu</span>
+      </button>
+    </li>
+    <li>
+      <a href="cart.html" class="mobile-bottom-nav__item">
+        <i class="fas fa-shopping-cart"></i><span>Cart</span>
+        <span class="header__count" data-cart-count style="top:-2px;right:4px">0</span>
+      </a>
+    </li>
+    <li>
+      <a href="index.html" class="mobile-bottom-nav__item">
+        <i class="fas fa-home"></i><span>Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="wishlist.html" class="mobile-bottom-nav__item">
+        <i class="fas fa-heart"></i><span>Wishlist</span>
+        <span class="header__count" data-wish-count style="top:-2px;right:4px">0</span>
+      </a>
+    </li>
+    <li>
+      <a href="login.html" class="mobile-bottom-nav__item">
+        <i class="fas fa-user"></i><span>Profile</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container" class="toast-container"></div>

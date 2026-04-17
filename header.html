@@ -1,0 +1,156 @@
+<!-- =============================================
+     GIFTSITE — REUSABLE HEADER COMPONENT
+     Include via JS: Components.loadHeader()
+     ============================================= -->
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">
+  <div class="announce-bar__inner">
+    <div class="announce-bar__item"><i class="fas fa-gift"></i><span>Free Delivery on Orders Above ₹499</span></div>
+    <span class="announce-divider">|</span>
+    <div class="announce-bar__item"><i class="fas fa-tag"></i><span>Use <strong>GIFT20</strong> for 20% OFF</span></div>
+    <span class="announce-divider">|</span>
+    <div class="announce-bar__item"><i class="fas fa-shipping-fast"></i><span>Ships within 24 Hours</span></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="main-header">
+  <div class="container">
+    <div class="header__top">
+
+      <!-- Logo -->
+      <a href="index.html" class="header__logo">
+        <div class="header__logo-icon"><img src="assets/images/giftrixs full logo.png" alt="GiftSite Logo"></div>
+
+      </a>
+
+      <!-- Search -->
+      <div class="header__search">
+        <input type="text" id="header-search-input" placeholder="Search personalized gifts…" autocomplete="off"/>
+        <button class="header__search-btn" onclick="headerSearch()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+      <!-- Actions -->
+      <div class="header__actions">
+        <a href="wishlist.html" class="header__icon-btn" title="Wishlist">
+          <i class="fas fa-heart"></i>
+          <span class="header__count" data-wish-count>0</span>
+        </a>
+        <a href="cart.html" class="header__icon-btn" title="Cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="header__count" data-cart-count>0</span>
+        </a>
+        <div id="login-btn-area">
+          <a href="login.html" class="header__login-btn">
+            <i class="fas fa-user"></i> Login
+          </a>
+        </div>
+        <button class="header__menu-btn" onclick="openDrawer()" aria-label="Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+    </div><!-- /.header__top -->
+
+    <!-- Desktop Navigation -->
+    <nav class="header__nav" aria-label="Main Navigation">
+      <ul class="nav__list">
+
+        <li class="nav__item">
+          <a href="index.html" class="nav__link">
+            <i class="fas fa-home" style="font-size:13px"></i> Home
+          </a>
+        </li>
+
+        <li class="nav__item">
+          <a href="category.html" class="nav__link">
+            Categories <i class="fas fa-chevron-down"></i>
+          </a>
+          <!-- Mega Menu -->
+          <div class="mega-menu">
+            <a href="category.html?cat=Wedding" class="mega-menu__item">
+              <div class="mega-menu__icon">💍</div>
+              <div><div class="mega-menu__label">Wedding</div><div class="mega-menu__count">40+ gifts</div></div>
+            </a>
+            <a href="category.html?cat=Anniversary" class="mega-menu__item">
+              <div class="mega-menu__icon">💕</div>
+              <div><div class="mega-menu__label">Anniversary</div><div class="mega-menu__count">55+ gifts</div></div>
+            </a>
+            <a href="category.html?cat=Birthday" class="mega-menu__item">
+              <div class="mega-menu__icon">🎂</div>
+              <div><div class="mega-menu__label">Birthday</div><div class="mega-menu__count">80+ gifts</div></div>
+            </a>
+            <a href="category.html?cat=Lovers" class="mega-menu__item">
+              <div class="mega-menu__icon">❤️</div>
+              <div><div class="mega-menu__label">Lovers</div><div class="mega-menu__count">35+ gifts</div></div>
+            </a>
+            <a href="category.html?cat=Family Gifts" class="mega-menu__item">
+              <div class="mega-menu__icon">👨‍👩‍👧‍👦</div>
+              <div><div class="mega-menu__label">Family Gifts</div><div class="mega-menu__count">60+ gifts</div></div>
+            </a>
+            <a href="category.html?cat=Personalized" class="mega-menu__item">
+              <div class="mega-menu__icon">✍️</div>
+              <div><div class="mega-menu__label">Personalized</div><div class="mega-menu__count">90+ gifts</div></div>
+            </a>
+          </div>
+        </li>
+
+        <li class="nav__item">
+          <a href="category.html?cat=Family Gifts" class="nav__link">Family Gifts</a>
+        </li>
+        <li class="nav__item">
+          <a href="category.html?cat=Personalized" class="nav__link">Personalized Items</a>
+        </li>
+        <li class="nav__item">
+          <a href="category.html?cat=Frame" class="nav__link">Frames</a>
+        </li>
+        <li class="nav__item">
+          <a href="category.html?cat=Wood Gifts" class="nav__link">Wood Gifts</a>
+        </li>
+        <li class="nav__item">
+          <a href="category.html?cat=Lighting Gifts" class="nav__link">Lighting Gifts</a>
+        </li>
+
+      </ul>
+    </nav><!-- /.header__nav -->
+
+  </div><!-- /.container -->
+</header>
+
+<!-- MOBILE SIDE DRAWER -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+<div class="side-drawer" id="side-drawer" role="dialog" aria-label="Navigation Menu">
+  <div class="side-drawer__head">
+    <span class="side-drawer__logo">🎁 GiftSite</span>
+    <button class="side-drawer__close" onclick="closeDrawer()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="side-drawer__body">
+    <a href="index.html"                    class="drawer-nav-item"><i class="fas fa-home"></i> Home</a>
+    <a href="category.html?cat=Wedding"     class="drawer-nav-item"><i class="fas fa-ring"></i> Wedding</a>
+    <a href="category.html?cat=Anniversary" class="drawer-nav-item"><i class="fas fa-heart"></i> Anniversary</a>
+    <a href="category.html?cat=Birthday"    class="drawer-nav-item"><i class="fas fa-birthday-cake"></i> Birthday</a>
+    <a href="category.html?cat=Lovers"      class="drawer-nav-item"><i class="fas fa-kiss-heart"></i> Lovers</a>
+    <a href="category.html?cat=Family Gifts"class="drawer-nav-item"><i class="fas fa-users"></i> Family Gifts</a>
+    <a href="category.html?cat=Personalized"class="drawer-nav-item"><i class="fas fa-pen-fancy"></i> Personalized Items</a>
+    <a href="category.html?cat=Frame"       class="drawer-nav-item"><i class="fas fa-image"></i> Frames</a>
+    <a href="category.html?cat=Wood Gifts"  class="drawer-nav-item"><i class="fas fa-tree"></i> Wood Gifts</a>
+    <a href="category.html?cat=Lighting Gifts" class="drawer-nav-item"><i class="fas fa-lightbulb"></i> Lighting Gifts</a>
+    <div class="drawer-divider"></div>
+    <a href="cart.html"     class="drawer-nav-item"><i class="fas fa-shopping-cart"></i> My Cart</a>
+    <a href="wishlist.html" class="drawer-nav-item"><i class="fas fa-heart"></i> Wishlist</a>
+    <a href="login.html"    class="drawer-nav-item" id="drawer-login-item"><i class="fas fa-user"></i> Login / Signup</a>
+  </div>
+</div>
+
+<!-- SEARCH SUGGESTIONS (hidden by default) -->
+<div id="search-suggestions" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:800;display:none" onclick="closeSearch()">
+  <div id="search-box" style="position:absolute;top:130px;left:50%;transform:translateX(-50%);width:90%;max-width:560px;background:white;border-radius:20px;box-shadow:0 20px 60px rgba(45,27,61,0.2);overflow:hidden" onclick="event.stopPropagation()">
+    <div style="padding:16px 20px;border-bottom:1px solid rgba(255,107,157,0.1)">
+      <input type="text" id="search-main-input" placeholder="Search for gifts…" style="width:100%;border:none;font-size:16px;font-family:inherit;color:var(--text-dark);outline:none" oninput="filterSearchResults(this.value)" autofocus/>
+    </div>
+    <div id="search-results-list" style="padding:12px;max-height:380px;overflow-y:auto"></div>
+  </div>
+</div>

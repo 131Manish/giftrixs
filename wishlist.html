@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Wishlist – GiftSite ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/main.css"/>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <div class="page-hero">
+    <h1 class="page-hero__title">❤️ My Wishlist</h1>
+    <p class="page-hero__sub">Your saved gifts — don't let them slip away!</p>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Wishlist</span>
+    </div>
+  </div>
+
+  <div class="container" style="padding:36px 0 60px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+      <div style="font-size:15px;font-weight:600;color:var(--text-mid)" id="wl-count-label">0 Saved Items</div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-outline btn-sm" onclick="addAllToCart()"><i class="fas fa-shopping-cart"></i> Add All to Cart</button>
+        <button class="btn btn-outline btn-sm" onclick="clearWishlist()" style="color:var(--text-light)"><i class="fas fa-trash"></i> Clear All</button>
+      </div>
+    </div>
+    <div class="grid-4" id="wishlist-grid"></div>
+    <div class="empty-state d-none" id="wishlist-empty">
+      <div class="empty-state__icon" style="animation:float 3s ease-in-out infinite">💝</div>
+      <h3 class="empty-state__title">Your Wishlist is Empty</h3>
+      <p class="empty-state__text">Save your favourite personalized gifts here to purchase them later</p>
+      <a href="category.html" class="btn btn-primary btn-lg"><i class="fas fa-heart"></i> Explore Gifts</a>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script>
+    function renderWishlist() {
+      const ids   = Wishlist.get();
+      const prods = GS_PRODUCTS.filter(p => ids.includes(p.id));
+      const grid  = document.getElementById('wishlist-grid');
+      const empty = document.getElementById('wishlist-empty');
+      const lbl   = document.getElementById('wl-count-label');
+      if (lbl) lbl.textContent = `${prods.length} Saved Item${prods.length !== 1 ? 's' : ''}`;
+      if (!prods.length) {
+        grid.innerHTML = ''; grid.classList.add('d-none');
+        empty.classList.remove('d-none');
+      } else {
+        grid.classList.remove('d-none'); empty.classList.add('d-none');
+        grid.innerHTML = prods.map(p => buildProductCard(p)).join('');
+      }
+    }
+    function addAllToCart() {
+      const ids = Wishlist.get();
+      ids.forEach(id => Cart.add(id));
+      Toast.show('success', `🛒 ${ids.length} items added to cart!`);
+    }
+    function clearWishlist() {
+      localStorage.removeItem('gs_wishlist');
+      Wishlist.updateBadge();
+      renderWishlist();
+      Toast.show('info', 'Wishlist cleared');
+    }
+    document.addEventListener('DOMContentLoaded', async () => {
+      await Components.loadAll();
+      renderWishlist();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Premium personalized gift details at GiftSite."/>
+  <title id="page-title">Product – GiftSite 🎁</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/main.css"/>
+  <link rel="stylesheet" href="assets/css/product.css"/>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <!-- BREADCRUMB -->
+  <div style="background:white;border-bottom:1px solid rgba(255,107,157,0.1)">
+    <div class="container" style="padding-top:14px;padding-bottom:14px">
+      <div class="breadcrumb" style="justify-content:flex-start;color:var(--text-light)">
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="category.html" id="bc-cat">Products</a>
+        <i class="fas fa-chevron-right"></i>
+        <span id="bc-name">Product</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAIL -->
+  <section class="section" style="padding-top:36px">
+    <div class="container">
+      <div class="product-detail" id="product-detail">
+        <!-- Loaded by JS -->
+        <div class="product-detail__gallery">
+          <div class="gallery-main skeleton" id="gallery-main" style="height:420px;border-radius:20px"></div>
+          <div class="gallery-thumbs" id="gallery-thumbs"></div>
+        </div>
+        <div class="product-detail__info skeleton" style="height:500px;border-radius:20px"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMILAR PRODUCTS -->
+  <section class="section section-alt" id="similar-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">You May Also Like</div>
+        <h2 class="section-title">Similar <span class="grad-text">Gifts</span></h2>
+      </div>
+      <div class="grid-4" id="similar-grid"></div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/product.js"></script>
+</body>
+</html>

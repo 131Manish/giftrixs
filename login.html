@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – GiftSite 🎁</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/main.css"/>
+  <link rel="stylesheet" href="assets/css/auth.css"/>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <div class="auth-page">
+    <div class="auth-container">
+      <!-- Left Decorative Panel -->
+      <div class="auth-panel">
+        <div class="auth-panel__content">
+          <div class="auth-panel__logo">🎁</div>
+          <h2 class="auth-panel__title">Welcome to<br><span>GiftSite</span></h2>
+          <p class="auth-panel__sub">India's #1 personalized gift platform. Thousands of unique gifts for every occasion.</p>
+          <div class="auth-panel__features">
+            <div class="auth-panel__feat"><i class="fas fa-gift"></i> 500+ Unique Gift Designs</div>
+            <div class="auth-panel__feat"><i class="fas fa-truck"></i> Express 24hr Delivery</div>
+            <div class="auth-panel__feat"><i class="fas fa-heart"></i> 50,000+ Happy Customers</div>
+            <div class="auth-panel__feat"><i class="fas fa-star"></i> 4.9★ Average Rating</div>
+          </div>
+        </div>
+        <div class="auth-panel__float" aria-hidden="true">💝</div>
+      </div>
+
+      <!-- Login Form -->
+      <div class="auth-form-wrap">
+        <div class="auth-form-inner">
+
+          <!-- STEP 1: Contact -->
+          <div id="step-1">
+            <div class="auth-form-logo">
+              <a href="index.html" style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;background:var(--grad-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none">🎁 GiftSite</a>
+            </div>
+            <h1 class="auth-title">Welcome Back! 👋</h1>
+            <p class="auth-sub">Login with your mobile number or email address</p>
+
+            <div class="form-group">
+              <label class="form-label">Mobile Number or Email</label>
+              <div style="position:relative">
+                <input type="text" class="form-input" id="login-contact" placeholder="9876543210 or you@email.com" autocomplete="tel"/>
+                <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:16px"><i class="fas fa-mobile-alt"></i></span>
+              </div>
+              <span class="form-error" id="contact-err">Please enter a valid mobile number or email</span>
+            </div>
+
+            <button class="btn btn-primary btn-block btn-lg" onclick="sendOTP()" id="send-otp-btn">
+              <i class="fas fa-paper-plane"></i> Send OTP
+            </button>
+
+            <div style="text-align:center;margin-top:20px;font-size:13.5px;color:var(--text-light)">
+              Don't have an account? <a href="signup.html" style="color:var(--pink);font-weight:700">Create Account</a>
+            </div>
+
+            <div class="auth-divider"><span>or continue with</span></div>
+            <div class="social-auth">
+              <button class="social-auth-btn" onclick="socialLogin('Google')"><i class="fab fa-google" style="color:#EA4335"></i> Google</button>
+              <button class="social-auth-btn" onclick="socialLogin('Facebook')"><i class="fab fa-facebook-f" style="color:#1877F2"></i> Facebook</button>
+            </div>
+          </div><!-- /#step-1 -->
+
+          <!-- STEP 2: OTP -->
+          <div id="step-2" class="d-none">
+            <div class="auth-form-logo">
+              <a href="index.html" style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;background:var(--grad-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none">🎁 GiftSite</a>
+            </div>
+            <h1 class="auth-title">Enter OTP 🔑</h1>
+            <p class="auth-sub">We've sent a 6-digit OTP to <strong id="sent-to-label"></strong></p>
+
+            <div class="otp-group" id="otp-inputs">
+              <input class="otp-input" maxlength="1" type="tel" oninput="otpNext(this)" onkeydown="otpBack(event,this)"/>
+              <input class="otp-input" maxlength="1" type="tel" oninput="otpNext(this)" onkeydown="otpBack(event,this)"/>
+              <input class="otp-input" maxlength="1" type="tel" oninput="otpNext(this)" onkeydown="otpBack(event,this)"/>
+              <input class="otp-input" maxlength="1" type="tel" oninput="otpNext(this)" onkeydown="otpBack(event,this)"/>
+              <input class="otp-input" maxlength="1" type="tel" oninput="otpNext(this)" onkeydown="otpBack(event,this)"/>
+              <input class="otp-input" maxlength="1" type="tel" oninput="otpNext(this)"/>
+            </div>
+
+            <p style="font-size:12.5px;color:var(--text-light);text-align:center;margin-bottom:20px">
+              Demo OTP: <strong style="color:var(--pink);letter-spacing:4px">123456</strong>
+            </p>
+
+            <button class="btn btn-primary btn-block btn-lg" onclick="verifyOTP()" id="verify-btn">
+              <i class="fas fa-check-circle"></i> Verify & Login
+            </button>
+
+            <div style="text-align:center;margin-top:16px">
+              <button onclick="resendOTP()" style="background:none;border:none;font-size:13px;color:var(--pink);font-weight:600;cursor:pointer;font-family:inherit" id="resend-btn">
+                <i class="fas fa-redo"></i> Resend OTP <span id="resend-timer">(30s)</span>
+              </button>
+            </div>
+            <div style="text-align:center;margin-top:12px">
+              <button onclick="backToStep1()" style="background:none;border:none;font-size:13px;color:var(--text-light);cursor:pointer;font-family:inherit">
+                <i class="fas fa-arrow-left"></i> Change number / email
+              </button>
+            </div>
+          </div><!-- /#step-2 -->
+
+        </div><!-- /.auth-form-inner -->
+      </div><!-- /.auth-form-wrap -->
+    </div><!-- /.auth-container -->
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script>
+    let resendTimerInterval;
+
+    function sendOTP() {
+      const contact = document.getElementById('login-contact').value.trim();
+      const errEl   = document.getElementById('contact-err');
+      const isMobile = /^[6-9]\d{9}$/.test(contact);
+      const isEmail  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
+      if (!contact || (!isMobile && !isEmail)) {
+        errEl.style.display = 'block';
+        document.getElementById('login-contact').classList.add('error');
+        return;
+      }
+      errEl.style.display = 'none';
+      document.getElementById('login-contact').classList.remove('error');
+
+      const btn = document.getElementById('send-otp-btn');
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+      btn.disabled = true;
+
+      // Simulate API call
+      setTimeout(() => {
+        document.getElementById('sent-to-label').textContent = contact;
+        document.getElementById('step-1').classList.add('d-none');
+        document.getElementById('step-2').classList.remove('d-none');
+        document.querySelectorAll('.otp-input')[0].focus();
+        startResendTimer();
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send OTP';
+        btn.disabled = false;
+        Toast.show('success', '📱 OTP sent! (Demo: 123456)');
+      }, 1200);
+    }
+
+    function verifyOTP() {
+      const inputs = document.querySelectorAll('.otp-input');
+      const otp    = Array.from(inputs).map(i => i.value).join('');
+      if (otp.length < 6) { Toast.show('error', '⚠️ Enter all 6 digits'); return; }
+      if (otp !== '123456') {
+        inputs.forEach(i => { i.style.borderColor = '#e53935'; i.value = ''; });
+        inputs[0].focus();
+        Toast.show('error', '❌ Wrong OTP. Try 123456');
+        return;
+      }
+      const btn = document.getElementById('verify-btn');
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying…';
+      btn.disabled = true;
+      setTimeout(() => {
+        const contact = document.getElementById('login-contact').value.trim();
+        Auth.set({ name: 'Guest User', email: contact, mobile: contact });
+        Toast.show('success', '✅ Login successful! Welcome back!');
+        setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+      }, 1000);
+    }
+
+    function backToStep1() {
+      document.getElementById('step-1').classList.remove('d-none');
+      document.getElementById('step-2').classList.add('d-none');
+      document.querySelectorAll('.otp-input').forEach(i => { i.value = ''; i.style.borderColor = ''; });
+      clearInterval(resendTimerInterval);
+    }
+
+    function resendOTP() {
+      document.querySelectorAll('.otp-input').forEach(i => i.value = '');
+      Toast.show('success', '📱 OTP resent! (Demo: 123456)');
+      startResendTimer();
+    }
+
+    function startResendTimer() {
+      let t = 30;
+      const timerEl  = document.getElementById('resend-timer');
+      const resendBtn = document.getElementById('resend-btn');
+      resendBtn.disabled = true;
+      clearInterval(resendTimerInterval);
+      resendTimerInterval = setInterval(() => {
+        t--;
+        if (timerEl) timerEl.textContent = `(${t}s)`;
+        if (t <= 0) {
+          clearInterval(resendTimerInterval);
+          if (timerEl) timerEl.textContent = '';
+          resendBtn.disabled = false;
+        }
+      }, 1000);
+    }
+
+    function otpNext(el) {
+      el.classList.add('filled');
+      if (el.value.length === 1) {
+        const next = el.nextElementSibling;
+        if (next?.classList.contains('otp-input')) next.focus();
+      }
+    }
+    function otpBack(e, el) {
+      if (e.key === 'Backspace') {
+        el.classList.remove('filled');
+        if (!el.value) {
+          const prev = el.previousElementSibling;
+          if (prev?.classList.contains('otp-input')) { prev.value = ''; prev.classList.remove('filled'); prev.focus(); }
+        }
+      }
+    }
+
+    function socialLogin(provider) {
+      Toast.show('info', `${provider} login coming soon!`);
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await Components.loadAll();
+      if (Auth.isLoggedIn()) window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

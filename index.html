@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="GiftSite – India's premium personalized gifts platform. Wedding, Anniversary, Birthday & more."/>
+  <meta name="keywords" content="personalized gifts, custom gifts India, name frame, LED lamp, wedding gifts"/>
+  <title>GiftSite – Premium Personalized Gifts 🎁</title>
+  <link rel="shortcut icon" href="./assets/images/giftrixs logo.png" type="image/x-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/main.css"/>
+  <link rel="stylesheet" href="assets/css/home.css"/>
+</head>
+<body>
+
+  <!-- Header Placeholder (loaded by components.js) -->
+  <div id="header-placeholder"></div>
+
+  <!-- ==================== HERO SLIDER ==================== -->
+  <section class="hero" id="hero">
+    <div class="hero__track" id="hero-track">
+
+      <div class="hero__slide" style="background:var(--grad-hero1)">
+        <div class="hero__slide-overlay"></div>
+        <div class="hero__slide-content container">
+          <div class="hero__tag reveal">✨ New Collection 2024</div>
+          <h1 class="hero__title reveal reveal-delay-1">
+            Make Every<br><span class="grad-text">Moment Special</span>
+          </h1>
+          <p class="hero__desc reveal reveal-delay-2">Discover our curated collection of personalized gifts that speak straight from the heart. Perfect for every occasion.</p>
+          <div class="hero__btns reveal reveal-delay-3">
+            <a href="category.html?cat=Birthday" class="btn btn-primary btn-lg"><i class="fas fa-gift"></i> Shop Now</a>
+            <a href="category.html" class="btn btn-ghost btn-lg">Explore All Gifts</a>
+          </div>
+          <div class="hero__stats reveal reveal-delay-4">
+            <div class="hero__stat"><span class="hero__stat-num">50K+</span><span class="hero__stat-label">Happy Customers</span></div>
+            <div class="hero__stat-divider"></div>
+            <div class="hero__stat"><span class="hero__stat-num">500+</span><span class="hero__stat-label">Unique Gifts</span></div>
+            <div class="hero__stat-divider"></div>
+            <div class="hero__stat"><span class="hero__stat-num">4.9★</span><span class="hero__stat-label">Avg. Rating</span></div>
+          </div>
+        </div>
+        <div class="hero__float-gift" aria-hidden="true">🎁</div>
+      </div>
+
+      <div class="hero__slide" style="background:var(--grad-hero2)">
+        <div class="hero__slide-overlay"></div>
+        <div class="hero__slide-content container">
+          <div class="hero__tag">💕 Wedding Season 2024</div>
+          <h1 class="hero__title">Gift the<br><span class="grad-text">Perfect Love</span></h1>
+          <p class="hero__desc">Premium personalized wedding and anniversary gifts they'll treasure forever. Crafted with care.</p>
+          <div class="hero__btns">
+            <a href="category.html?cat=Wedding" class="btn btn-primary btn-lg"><i class="fas fa-ring"></i> Wedding Gifts</a>
+            <a href="category.html?cat=Anniversary" class="btn btn-ghost btn-lg">Anniversary</a>
+          </div>
+        </div>
+        <div class="hero__float-gift" aria-hidden="true">💍</div>
+      </div>
+
+      <div class="hero__slide" style="background:var(--grad-hero3)">
+        <div class="hero__slide-overlay"></div>
+        <div class="hero__slide-content container">
+          <div class="hero__tag">🌟 Best Sellers</div>
+          <h1 class="hero__title">Personalized<br><span class="grad-text">Name Frames</span></h1>
+          <p class="hero__desc">Customized LED frames, wood plaques, and neon signs crafted with love and precision for your loved ones.</p>
+          <div class="hero__btns">
+            <a href="category.html?cat=Frame" class="btn btn-primary btn-lg"><i class="fas fa-image"></i> Shop Frames</a>
+            <a href="category.html?cat=Lighting Gifts" class="btn btn-ghost btn-lg">LED Gifts</a>
+          </div>
+        </div>
+        <div class="hero__float-gift" aria-hidden="true">🖼️</div>
+      </div>
+
+    </div><!-- /.hero__track -->
+
+    <!-- Controls -->
+    <button class="hero__arrow hero__arrow--prev" onclick="heroSlide(-1)" aria-label="Previous slide">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="hero__arrow hero__arrow--next" onclick="heroSlide(1)" aria-label="Next slide">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    <div class="hero__dots" id="hero-dots"></div>
+
+  </section>
+
+  <!-- ==================== CATEGORIES ==================== -->
+  <section class="section" style="padding-bottom:0">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Shop by Occasion</div>
+        <h2 class="section-title">Browse <span class="grad-text">Categories</span></h2>
+        <p class="section-subtitle">Find the perfect gift for every special occasion</p>
+      </div>
+      <div class="h-scroll reveal" id="categories-scroll"></div>
+    </div>
+  </section>
+
+  <!-- ==================== BEST SELLERS ==================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">🏆 Most Popular</div>
+        <h2 class="section-title"><span class="grad-text">Best Sellers</span></h2>
+        <p class="section-subtitle">Our most loved personalized gifts, chosen by thousands of happy customers</p>
+      </div>
+      <div class="grid-4 reveal" id="bestsellers-grid"></div>
+      <div class="text-center mt-4 reveal">
+        <a href="category.html" class="btn btn-outline btn-lg">View All Products <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROMO BANNER ==================== -->
+  <div class="promo-banner reveal">
+    <div class="container">
+      <div class="promo-banner__inner">
+        <div class="promo-banner__text">
+          <div class="promo-banner__tag">Limited Time Offer</div>
+          <h2 class="promo-banner__title">Get <span>20% OFF</span> on First Order</h2>
+          <p>Use code <strong>GIFT20</strong> at checkout. Valid on all personalized gifts.</p>
+        </div>
+        <a href="category.html" class="btn btn-primary btn-lg promo-banner__cta">
+          <i class="fas fa-gift"></i> Shop Now & Save
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== NEW ARRIVALS ==================== -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">🆕 Just Arrived</div>
+        <h2 class="section-title">New <span class="grad-text">Arrivals</span></h2>
+        <p class="section-subtitle">Fresh designs added just for you — be the first to gift something new</p>
+      </div>
+      <div class="grid-4 reveal" id="newarrivals-grid"></div>
+    </div>
+  </section>
+
+  <!-- ==================== TRENDING ==================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">🔥 Hot Right Now</div>
+        <h2 class="section-title"><span class="grad-text">Trending</span> Gifts</h2>
+        <p class="section-subtitle">What everyone is gifting this season — don't miss out</p>
+      </div>
+      <div class="grid-4 reveal" id="trending-grid"></div>
+    </div>
+  </section>
+
+  <!-- ==================== TOP RATED ==================== -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">⭐ Customer Favorites</div>
+        <h2 class="section-title">Top <span class="grad-text">Rated</span> Gifts</h2>
+        <p class="section-subtitle">Gifts with the highest ratings from our verified happy customers</p>
+      </div>
+      <div class="grid-4 reveal" id="toprated-grid"></div>
+    </div>
+  </section>
+
+  <!-- ==================== WHY CHOOSE US ==================== -->
+  <section class="section section-dark why-section">
+    <div class="container">
+      <div class="section-header reveal" style="position:relative;z-index:1">
+        <div class="section-tag light">Why GiftSite?</div>
+        <h2 class="section-title light">Why <span class="grad-text">Choose Us?</span></h2>
+        <p class="section-subtitle light">We make gifting special, memorable, and effortless — every single time</p>
+      </div>
+      <div class="why-grid reveal">
+        <div class="why-card">
+          <div class="why-card__icon">🎨</div>
+          <h3 class="why-card__title">Unique Gifts</h3>
+          <p class="why-card__desc">Every gift is uniquely crafted and personalized just for your loved one. No two are ever the same.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">🚚</div>
+          <h3 class="why-card__title">Fast Delivery</h3>
+          <p class="why-card__desc">Express delivery available across India. Personalized gifts delivered within 24–48 hours.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">🔒</div>
+          <h3 class="why-card__title">Secure Payment</h3>
+          <p class="why-card__desc">100% secure checkout with UPI, Cards, Net Banking & WhatsApp ordering. Your data is always safe.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">✨</div>
+          <h3 class="why-card__title">Best Quality</h3>
+          <p class="why-card__desc">Premium materials, HD printing, and meticulous craftsmanship in every single product we make.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS ==================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">💬 Testimonials</div>
+        <h2 class="section-title">What Our <span class="grad-text">Customers</span> Say</h2>
+      </div>
+      <div class="grid-3 reveal" id="testimonials"></div>
+    </div>
+  </section>
+
+  <!-- Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/home.js"></script>
+</body>
+</html>

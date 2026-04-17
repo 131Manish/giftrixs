@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Cart – GiftSite 🛒</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/main.css"/>
+  <style>
+    .cart-layout { display:grid; grid-template-columns:1fr 360px; gap:28px; padding:36px 0 60px; align-items:start; }
+    .cart-card { background:white; border-radius:var(--r-md); box-shadow:var(--shadow-xs); overflow:hidden; }
+    .cart-card-head { padding:20px 24px; border-bottom:1px solid rgba(255,107,157,0.1); display:flex; align-items:center; justify-content:space-between; }
+    .cart-card-head h3 { font-size:16px; font-weight:700; color:var(--text-dark); }
+    .cart-item { display:flex; gap:16px; padding:20px 24px; border-bottom:1px solid rgba(255,107,157,0.07); transition:var(--t-base); }
+    .cart-item:last-child { border-bottom:none; }
+    .cart-item:hover { background:rgba(255,245,248,0.5); }
+    .cart-item__img { width:80px; height:80px; flex-shrink:0; background:var(--grad-soft); border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; font-size:36px; }
+    .cart-item__info { flex:1; min-width:0; }
+    .cart-item__name { font-size:14px; font-weight:600; color:var(--text-dark); margin-bottom:4px; }
+    .cart-item__cat { font-size:12px; color:var(--text-light); margin-bottom:8px; }
+    .cart-item__price { font-size:16px; font-weight:800; background:var(--grad-main); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .cart-item__del { color:var(--text-muted); font-size:15px; cursor:pointer; padding:4px; transition:var(--t-fast); flex-shrink:0; align-self:flex-start; background:none; border:none; }
+    .cart-item__del:hover { color:var(--pink); }
+    .cart-item__bottom { display:flex; align-items:center; justify-content:space-between; margin-top:10px; }
+
+    .summary-card { background:white; border-radius:var(--r-md); box-shadow:var(--shadow-xs); padding:24px; position:sticky; top:120px; }
+    .summary-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:900; color:var(--text-dark); margin-bottom:20px; }
+    .summary-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-size:14px; color:var(--text-mid); }
+    .summary-row.total { font-size:18px; font-weight:800; color:var(--text-dark); margin-top:16px; padding-top:16px; border-top:2px dashed rgba(255,107,157,0.2); }
+    .summary-row.total span:last-child { background:var(--grad-main); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .coupon-row { display:flex; gap:8px; margin:18px 0; }
+    .coupon-input { flex:1; padding:10px 14px; border:2px solid rgba(255,107,157,0.18); border-radius:var(--r-sm); font-size:13px; color:var(--text-dark); background:rgba(255,245,248,0.5); transition:var(--t-base); }
+    .coupon-input:focus { border-color:var(--pink); background:white; }
+    .coupon-btn { padding:10px 16px; background:var(--grad-soft); border:1.5px solid var(--pink-light); border-radius:var(--r-sm); font-size:13px; font-weight:600; color:var(--pink); cursor:pointer; transition:var(--t-base); white-space:nowrap; }
+    .coupon-btn:hover { background:var(--grad-main); color:white; border-color:transparent; }
+    .summary-ctas { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
+    .safe-icons { display:flex; gap:6px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
+    .safe-icon { display:flex; align-items:center; gap:4px; font-size:11px; color:var(--text-light); }
+    @media(max-width:900px){ .cart-layout{grid-template-columns:1fr;} .summary-card{position:static;} }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <div class="page-hero">
+    <h1 class="page-hero__title">🛒 My Cart</h1>
+    <p class="page-hero__sub">Review your selected gifts before checkout</p>
+  </div>
+
+  <div class="container">
+    <div class="cart-layout" id="cart-layout">
+      <!-- Loaded by JS -->
+    </div>
+    <div class="empty-state d-none" id="cart-empty">
+      <div class="empty-state__icon">🛒</div>
+      <h3 class="empty-state__title">Your Cart is Empty</h3>
+      <p class="empty-state__text">Looks like you haven't added any gifts yet. Start exploring!</p>
+      <a href="category.html" class="btn btn-primary btn-lg"><i class="fas fa-gift"></i> Browse Gifts</a>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script>
+    function renderCart() {
+      const items   = Cart.get();
+      const layout  = document.getElementById('cart-layout');
+      const empty   = document.getElementById('cart-empty');
+      if (!items.length) { layout.classList.add('d-none'); empty.classList.remove('d-none'); return; }
+      layout.classList.remove('d-none'); empty.classList.add('d-none');
+      const subtotal = items.reduce((s,i) => s + i.price * i.qty, 0);
+      const delivery = subtotal >= 499 ? 0 : 49;
+      const total    = subtotal + delivery;
+      layout.innerHTML = `
+        <div class="cart-card">
+          <div class="cart-card-head">
+            <h3>Cart Items (${items.reduce((s,i)=>s+i.qty,0)})</h3>
+            <button onclick="clearCart()" style="background:none;border:none;font-size:13px;color:var(--text-light);cursor:pointer;font-family:inherit">Clear All</button>
+          </div>
+          ${items.map(item => `
+            <div class="cart-item" id="cart-item-${item.id}">
+              <div class="cart-item__img">${item.emoji}</div>
+              <div class="cart-item__info">
+                <a href="product.html?id=${item.id}" class="cart-item__name">${item.name}</a>
+                <div class="cart-item__cat">${item.category}</div>
+                <div class="cart-item__bottom">
+                  <div class="qty-control">
+                    <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+                    <span class="qty-num">${item.qty}</span>
+                    <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+                  </div>
+                  <span class="cart-item__price">₹${item.price * item.qty}</span>
+                </div>
+              </div>
+              <button class="cart-item__del" onclick="removeItem(${item.id})" title="Remove"><i class="fas fa-trash-alt"></i></button>
+            </div>`).join('')}
+        </div>
+        <div class="summary-card">
+          <div class="summary-title">Order Summary</div>
+          <div class="summary-row"><span>Subtotal</span><span>₹${subtotal}</span></div>
+          <div class="summary-row"><span>Delivery</span><span style="color:${delivery?'inherit':'#2E7D32'}">${delivery?'₹'+delivery:'FREE'}</span></div>
+          ${delivery ? '<div style="font-size:11px;color:var(--text-light);margin-bottom:8px">Add ₹'+(499-subtotal)+' more for free delivery</div>' : ''}
+          <div class="coupon-row">
+            <input class="coupon-input" placeholder="Enter coupon code" id="coupon-input"/>
+            <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
+          </div>
+          <div class="summary-row total"><span>Total</span><span>₹${total}</span></div>
+          <div class="summary-ctas">
+            <button class="btn btn-primary btn-block btn-lg" onclick="WA.checkout()">
+              <i class="fas fa-shopping-bag"></i> Proceed to Checkout
+            </button>
+            <button class="btn btn-wa btn-block" onclick="WA.checkout()">
+              <i class="fab fa-whatsapp"></i> Order via WhatsApp
+            </button>
+            <a href="category.html" class="btn btn-outline btn-block">
+              <i class="fas fa-arrow-left"></i> Continue Shopping
+            </a>
+          </div>
+          <div class="safe-icons">
+            <div class="safe-icon"><i class="fas fa-lock" style="color:var(--pink)"></i> Secure</div>
+            <div class="safe-icon"><i class="fas fa-truck" style="color:var(--pink)"></i> Fast Ship</div>
+            <div class="safe-icon"><i class="fas fa-undo" style="color:var(--pink)"></i> Returns</div>
+          </div>
+        </div>`;
+    }
+    function changeQty(id, delta) { Cart.updateQty(id, delta); renderCart(); }
+    function removeItem(id) { Cart.remove(id); renderCart(); Toast.show('info','Item removed from cart'); }
+    function clearCart() { localStorage.removeItem('gs_cart'); renderCart(); }
+    function applyCoupon() {
+      const v = document.getElementById('coupon-input').value.trim().toUpperCase();
+      if (v === 'GIFT20') Toast.show('success','🎉 Coupon applied! 20% OFF');
+      else Toast.show('error','❌ Invalid coupon code');
+    }
+    document.addEventListener('DOMContentLoaded', async () => {
+      await Components.loadAll();
+      renderCart();
+    });
+  </script>
+</body>
+</html>
